@@ -14,7 +14,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth.inMemoryAuthentication().withUser("Miro").password("{noop}123456789").roles("USER");
+		auth.inMemoryAuthentication().withUser("Miro").password("123456789").roles("USER");
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception
