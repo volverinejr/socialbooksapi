@@ -31,13 +31,23 @@ public class LivrosResources {
 	private LivrosServices _livrosServices;
 	
 	
+	/**
+	 * Retorna Lista dos Livros
+	 * 
+	 * @return ResponseEntity<List<Livro>>
+	 */
 	@GetMapping
 	public ResponseEntity<List<Livro>> listar() 
 	{
 		return ResponseEntity.status(HttpStatus.OK).body( _livrosServices.listar() );
 	}
 	
-	
+	/**
+	 * Retorna um Livro
+	 * 
+	 * @param id
+	 * @return ResponseEntity<Livro>
+	 */
 	@GetMapping("/{id}")
 	public  ResponseEntity<?> buscar(@PathVariable("id") Long id) 
 	{
@@ -48,7 +58,12 @@ public class LivrosResources {
 		return ResponseEntity.status(HttpStatus.OK).cacheControl(cacheControl).body(livro);
 	}
 	
-	
+	/**
+	 * Cadastra um Livro
+	 * 
+	 * @param Livro
+	 * @return ResponseEntity<Void>
+	 */
 	@PostMapping
 	public ResponseEntity<Void> salvar(@RequestBody Livro livro)
 	{
@@ -61,6 +76,13 @@ public class LivrosResources {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	/**
+	 * Atualiza um Livro
+	 * 
+	 * @param id
+	 * @param Livro
+	 * @return ResponseEntity<Void>
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> atualizar(@PathVariable("id") Long id, @RequestBody Livro livro) 
 	{
@@ -71,7 +93,12 @@ public class LivrosResources {
 		return ResponseEntity.noContent().build();
 	}
 
-	
+	/**
+	 * Remove um Livro
+	 * 
+	 * @param id
+	 * @return ResponseEntity<Void>
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable("id") Long id) 
 	{
@@ -80,6 +107,15 @@ public class LivrosResources {
 		return ResponseEntity.noContent().build();
 	}
 	
+
+	
+	/**
+	 * Cadastra um Comentario dado um Livro
+	 * 
+	 * @param livroId
+	 * @param Comentario
+	 * @return ResponseEntity<Void>
+	 */
 	@PostMapping("/{id}/comentarios")
 	public ResponseEntity<Void> adicionarComentario(@PathVariable("id") Long livroId, @RequestBody Comentario comentario)
 	{
@@ -92,6 +128,13 @@ public class LivrosResources {
 		return ResponseEntity.created(uri).build();
 	}
 	
+
+	/**
+	 * Retorna Lista dos Comentarios dado um livro
+	 * 
+	 * @param livroId
+	 * @return ResponseEntity<List<Comentario>>
+	 */
 	@GetMapping("/{id}/comentarios")
 	public ResponseEntity<List<Comentario>> listarComentarios(@PathVariable("id") Long livroId)
 	{

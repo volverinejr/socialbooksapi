@@ -29,12 +29,23 @@ public class AutorResources {
 	@Autowired
 	private AutorServices _autorServices;
 	
+	/**
+	 * Retorna Lista os Autores
+	 * 
+	 * @return ResponseEntity<List<Autor>>
+	 */
 	@GetMapping
 	public ResponseEntity<List<Autor>> listar() 
 	{
 		return ResponseEntity.status(HttpStatus.OK).body( _autorServices.listar() );
 	}
 	
+	/**
+	 * Retorna um Autor
+	 * 
+	 * @param id
+	 * @return ResponseEntity<Autor>
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscar(@PathVariable Long id)
 	{
@@ -43,7 +54,12 @@ public class AutorResources {
 		return ResponseEntity.status(HttpStatus.OK).body( autor );
 	}
 	
-	
+	/**
+	 * Cadastra um Autor
+	 * 
+	 * @param Autor
+	 * @return ResponseEntity<Void>
+	 */
 	@PostMapping
 	public ResponseEntity<Void> salvar(@Valid @RequestBody Autor autor)
 	{
@@ -55,7 +71,14 @@ public class AutorResources {
 		
 		return ResponseEntity.created(uri).build();
 	}
-	
+
+	/**
+	 * Atualiza um Autor
+	 * 
+	 * @param id
+	 * @param Autor
+	 * @return ResponseEntity<Void>
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> atualizar(@PathVariable("id") Long id, @Valid @RequestBody Autor autor) 
 	{
@@ -67,6 +90,12 @@ public class AutorResources {
 	}
 
 	
+	/**
+	 * Remove um Autor
+	 * 
+	 * @param id
+	 * @return ResponseEntity<Void>
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable("id") Long id) 
 	{
